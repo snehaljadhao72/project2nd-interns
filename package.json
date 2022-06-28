@@ -1,0 +1,24 @@
+{
+  "name": "project-internshipgroup21",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Snehal-Khandelwal/Project-internshipGroup21.git"
+  },
+  "author": "Snehal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Snehal-Khandelwal/Project-internshipGroup21/issues"
+  },
+  "homepage": "https://github.com/Snehal-Khandelwal/Project-internshipGroup21#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.1",
+    "nodemon": "^2.0.18"
+  }
+}
