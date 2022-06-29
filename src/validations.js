@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const CollegeModels = require("./Models/CollegeModels");
 const InternModel=require("./Models/InternModels")
-var validUrl = require('valid-url');
-const URL = require("url").URL;
+// var validUrl = require('valid-url');
+// const URL = require("url").URL;
 
 let mobile1=/^[0-9]{10}$/;
 let re = /^[a-zA-Z\-]+$/;
@@ -14,6 +14,15 @@ function x(data) {
     return true
 
 }
+
+const checkBody = async function(req,res,next){
+  try{let data = req.body
+  if (Object.keys(data).length == 0) {return res.status(400).send({status : false, msg : "Bad request- Please enter details in the request Body "})}
+  next()
+}catch(err){
+  res.status(500).send({error : err.messsage})
+}}
+
 
 const validator1 = async function (req, res, next) {
     try {
@@ -65,4 +74,4 @@ const validator2 = async function (req, res, next) {
 
 }
 
-module.exports = { validator1, validator2 }
+module.exports = { validator1, validator2 ,checkBody}
