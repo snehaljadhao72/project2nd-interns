@@ -1,4 +1,4 @@
-const InternModel = require("../models/internmodel.js");
+const InternModel = require("../Models/InternModels.js");
 
 
 

@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const CollegeControllers = require('../controllers/collegeControllers.js')
-const InternControllers = require('../controllers/internController.js')
+const CollegeControllers = require('../Controllers/CollegeControllers.js')
+const InternControllers = require('../Controllers/InternController.js')
+const validation = require("../validations.js")
 
 
-router.post('/functionup/colleges', CollegeControllers.college )
+router.post('/functionup/colleges',validation.validator1, CollegeControllers.college )
 
-router.post('/functionup/interns', InternControllers.intern )
+router.post('/functionup/interns',validation.validator2, InternControllers.intern )
 
-router.get('/functionup/collegeDetails', CollegeControllers.getInternsByCollege )
+router.get('/functionup/collegeDetails', CollegeControllers.getDetails )
 
 
 
