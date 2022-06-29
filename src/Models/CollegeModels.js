@@ -10,7 +10,7 @@ const collegeModel = new mongoose.Schema({
       type: String,
       required: true
    },
-   LogoLink: {
+   logoLink: {
       type: String,
       required: true
    },

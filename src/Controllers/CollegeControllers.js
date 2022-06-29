@@ -34,14 +34,14 @@ let getDetails = async function (req, res) {
         collegeName = collegeName.trim()
         collegeName = collegeName.toLowerCase()
         let findName = await CollegeModel.findOne({ name: collegeName })
-      
+        if (!findName) { return res.status(400).send({ status: false, msg: "collge does not exists" }) }
         let id = findName._id.toString()
         let findIntern = await InternModel.find({ collegeId: id }).select({ name: 1, email: 1, mobile: 1 })
         if (!findIntern.length > 0) { return res.status(400).send({ status: false, msg: "No data found" }) }
         let newData = {
             name: collegeName,
             fullName: findName.fullName,
-            LogoLink: findName.LogoLink,
+            logoLink: findName.logoLink,
             interns: findIntern
         }
 

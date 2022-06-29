@@ -6,7 +6,7 @@ const InternModel=require("./Models/InternModels")
 
 let mobile1=/^[0-9]{10}$/;
 let re = /^[a-zA-Z\-]+$/;
-let email = /^[a-zA-Z][a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/;
+let email1 = /^[a-zA-Z][a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/;
 let regex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
 
 function x(data) {
@@ -35,9 +35,9 @@ const validator1 = async function (req, res, next) {
         let fullName = req.body.fullName;
         if (!x(fullName)) return res.status(400).send({ status: false, message: "Please enter fullName" })
 
-        let LogoLink = req.body.LogoLink;
-        if (!x(LogoLink)) return res.status(400).send({ status: false, message: "Please enter LogoLink" })
-        if (!LogoLink.match(regex)) return res.status(400).send({ status: false, message: "Please enter valid LogoLink" })
+        let logoLink = req.body.logoLink;
+        if (!x(logoLink)) return res.status(400).send({ status: false, message: "Please enter LogoLink" })
+        if (!logoLink.match(regex)) return res.status(400).send({ status: false, message: "Please enter valid LogoLink" })
 
         next()
     } catch (err) {
@@ -53,6 +53,7 @@ const validator2 = async function (req, res, next) {
 
         let email = req.body.email;
         if (!x(email)) return res.status(400).send({ status: false, message: "Please enter email" })
+        if (!email.match(email1)) return res.status(400).send({ status: false, message: "Please Enter Valid email" })
         let usedemail = await InternModel.findOne({ email: email })
         if (usedemail) return res.status(400).send({ status: false, message: "This emailId has already been used" })
 
