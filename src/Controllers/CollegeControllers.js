@@ -4,7 +4,7 @@ const InternModel = require("../Models/InternModels.js");
 function startUpperCase(x) {
     const a = x.split(" ");
     for (var i = 0; i < a.length; i++) {
-        a[i] = a[i].charAt(0).toUpperCase() + a[i].slice(1);
+        a[i] = a[i].charAt(0).toUpperCase() + a[i].slice(1).toLowerCase();
     }
     x = a.join(" ");
     return x
@@ -34,10 +34,10 @@ let getDetails = async function (req, res) {
         collegeName = collegeName.trim()
         collegeName = collegeName.toLowerCase()
         let findName = await CollegeModel.findOne({ name: collegeName })
-        if (!findName) { return res.status(400).send({ status: false, msg: "collge does not exists" }) }
+        if (!findName) { return res.status(404).send({ status: false, msg: "collge does not exists" }) }
         let id = findName._id.toString()
         let findIntern = await InternModel.find({ collegeId: id }).select({ name: 1, email: 1, mobile: 1 })
-        if (!findIntern.length > 0) { return res.status(400).send({ status: false, msg: "No data found" }) }
+        if (!findIntern.length > 0) { return res.status(404).send({ status: false, msg: "No data found" }) }
         let newData = {
             name: collegeName,
             fullName: findName.fullName,
