@@ -5,14 +5,11 @@ const  mongoose = require('mongoose');
 const app = express();
 app.use(bodyParser.json());
 
-
-
 mongoose.connect("mongodb+srv://snehal_3497:snehal_3497@atlascluster.q9xoryr.mongodb.net/group21Database?retryWrites=true&w=majority", {
     useNewUrlParser: true
 })
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
-
 
 
 app.use('/', route);

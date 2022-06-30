@@ -18,7 +18,9 @@ const college = async function (req, res) {
         let CollegeName = data.fullName;
         data.fullName = startUpperCase(CollegeName);
         let createCollege = await CollegeModel.create(data);
-        res.status(201).send({ status: true, data: createCollege })
+        let finelResult=await CollegeModel.findOne({_id:createCollege._id}).select({_id:0,__v:0})
+        res.status(201).send({ status: true, data: finelResult })
+
     }
     catch (err) {
         res.status(500).send({ error: err.message })
@@ -37,7 +39,7 @@ let getDetails = async function (req, res) {
         if (!findName) { return res.status(404).send({ status: false, msg: "collge does not exists" }) }
         let id = findName._id.toString()
         let findIntern = await InternModel.find({ collegeId: id }).select({ name: 1, email: 1, mobile: 1 })
-        if (!findIntern.length > 0) { return res.status(404).send({ status: false, msg: "No data found" }) }
+        if (!findIntern.length > 0) { return res.status(404).send({ status: false, msg: "No Intern found" }) }
         let newData = {
             name: collegeName,
             fullName: findName.fullName,

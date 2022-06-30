@@ -1,8 +1,7 @@
-//const mongoose = require("mongoose");
+
 const CollegeModels = require("./Models/CollegeModels");
 const InternModel = require("./Models/InternModels")
-// var validUrl = require('valid-url');
-// const URL = require("url").URL;
+
 
 let mobile1 = /^[0-9]{10}$/;
 let re = /^[a-zA-Z\-]+$/;
@@ -12,7 +11,6 @@ let regex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\
 function x(data) {
     if (!data || data == null || data === undefined || data.trim() == 0) return false;
     return true
-
 }
 
 const checkBody = async function (req, res, next) {

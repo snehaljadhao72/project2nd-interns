@@ -24,9 +24,10 @@ const intern = async function (req, res) {
             mobile: data.mobile,
             collegeId:id
         }
-        let createIntern = await (await InternModel.create(newData));
+        let createIntern = await InternModel.create(newData);
+        let finelResult=await InternModel.findOne({_id:createIntern._id}).select({_id:0,__v:0})
       
-        res.status(201).send({ status: true, data: createIntern })
+        res.status(201).send({ status: true, data: finelResult })
     } catch (err) {
         res.status(500).send({ error: err.message })
     }
